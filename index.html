@@ -379,7 +379,7 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
       <h2 class="title center rv">Coming <em>to the party?</em></h2>
       <p class="center muted rv" style="margin-top:12px">Please let us know by Sunday 3 January</p>
       <div class="rsvp-box rv">
-        <p>Tap the button. WhatsApp opens with a short message already typed. Add your names and the kids' book characters, then send.</p>
+        <p>Tap the button. WhatsApp opens with a short message already typed. Add your names, then send.</p>
         <div class="row"><span>Reply to</span><b>Ashish on WhatsApp</b></div>
         <div class="btns" style="margin-top:22px">
           <a class="btn wa" id="waBtn" href="#" target="_blank" rel="noopener">
@@ -518,7 +518,7 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
   });
 
   /* WhatsApp RSVP */
-  var msg="Hi Ashish! RSVP for Nysha's 5th birthday on Sunday 10 Jan.\n\nComing: yes / no\nNames: \nKids\u2019 book character(s): ";
+  var msg="Hi Ashish! RSVP for Nysha's 5th birthday on Sunday 10 Jan.\n\nComing: yes / no\nNames: ";
   $("#waBtn").href = WHATSAPP_NUMBER ? "https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg) : "https://wa.me/?text="+encodeURIComponent(msg);
 
 
