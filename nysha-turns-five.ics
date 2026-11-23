@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Nysha turns five//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:nysha-turns-five-2027@ashishsingh1988.github.io
+DTSTAMP:20261123T100000Z
+DTSTART;TZID=Australia/Sydney:20270110T163000
+DTEND;TZID=Australia/Sydney:20270110T200000
+SUMMARY:Princess Nysha turns five (book character party)
+LOCATION:The Ponds Community Hub Hall 1\, 45 Riverbank Drive\, The Ponds NSW 2769
+DESCRIPTION:Kids come dressed as their favourite book character. Invite: https://ashishsingh1988.github.io/nysha-party-jan27/
+URL:https://ashishsingh1988.github.io/nysha-party-jan27/
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Nysha's party is tomorrow
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -297,7 +297,8 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
       </div>
       <div class="btns rv">
         <a class="btn" href="https://www.google.com/maps/search/?api=1&query=The+Ponds+Community+Hub%2C+45+Riverbank+Drive%2C+The+Ponds+NSW+2769" target="_blank" rel="noopener">Get directions →</a>
-        <a class="btn ghost" id="ics" href="#" download="Nysha-turns-five.ics">Add to calendar +</a>
+        <a class="btn ghost" href="nysha-turns-five.ics">Add to calendar +</a>
+        <a class="btn ghost" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Princess+Nysha+turns+five+%28book+character+party%29&amp;dates=20270110T053000Z%2F20270110T090000Z&amp;details=Kids+come+dressed+as+their+favourite+book+character.+Invite%3A+https%3A%2F%2Fashishsingh1988.github.io%2Fnysha-party-jan27%2F&amp;location=The+Ponds+Community+Hub+Hall+1%2C+45+Riverbank+Drive%2C+The+Ponds+NSW+2769" target="_blank" rel="noopener">Google Calendar +</a>
       </div>
     </div>
   </section>
@@ -419,7 +420,6 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
   /* ===== edit these ===== */
   var WHATSAPP_NUMBER = "";                        // digits only, international format, e.g. 61412345678
   var PARTY_START = "2027-01-10T16:30:00+11:00";   // Sydney daylight time
-  var PARTY_END   = "2027-01-10T20:00:00+11:00";   // used in the calendar file only
   var PHOTOS = [
     {src:"images/bday1.jpg", cap:"1st birthday", t:"#FFE1EA"},
     {src:"images/bday2.jpg", cap:"2nd birthday", t:"#E2F0FF"},
@@ -521,12 +521,6 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
   var msg="Hi Ashish! RSVP for Nysha's 5th birthday on Sunday 10 Jan.\n\nComing: yes / no\nNames: \nKids\u2019 book character(s): ";
   $("#waBtn").href = WHATSAPP_NUMBER ? "https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(msg) : "https://wa.me/?text="+encodeURIComponent(msg);
 
-  /* calendar file */
-  function icsDate(iso){return new Date(iso).toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");}
-  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Nysha turns five//EN","BEGIN:VEVENT","UID:nysha-turns-five-2027@invite","DTSTAMP:"+icsDate(new Date().toISOString()),
-    "DTSTART:"+icsDate(PARTY_START),"DTEND:"+icsDate(PARTY_END),"SUMMARY:Princess Nysha turns five (book character party)",
-    "LOCATION:The Ponds Community Hub Hall 1\\, 45 Riverbank Drive\\, The Ponds NSW 2769","DESCRIPTION:Kids come dressed as their favourite book character.","END:VEVENT","END:VCALENDAR"].join("\r\n");
-  $("#ics").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
 
   /* countdown */
   var T=new Date(PARTY_START).getTime(), c=$("#count"), dd=$("[data-d]",c), hh=$("[data-h]",c), mm=$("[data-m]",c), ss=$("[data-s]",c);
