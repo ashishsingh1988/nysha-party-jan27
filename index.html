@@ -558,6 +558,19 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
   musicBtn.addEventListener("click",function(){ setMusic(!musicOn); });
   /* the first balloon pop is the guest's first tap, so the browser lets sound start here */
   window.__startMusic=function(){ if(!musicOn) setMusic(true); };
+  /* phones pause the audio engine when the guest switches to Maps or WhatsApp; pick the tune up again when they come back */
+  function resumeMusic(){
+    if(!musicOn || !ac) return;
+    clearTimeout(musicTimer);
+    var go=function(){ if(musicOn && ac.state==="running") playTune(); };
+    if(ac.state==="running") go(); else ac.resume().then(go).catch(function(){});
+  }
+  document.addEventListener("visibilitychange",function(){
+    if(document.visibilityState==="hidden"){ clearTimeout(musicTimer); }
+    else { resumeMusic(); }
+  });
+  window.addEventListener("pageshow",resumeMusic);
+  document.addEventListener("pointerdown",function(){ if(musicOn && ac && ac.state!=="running") resumeMusic(); },{passive:true});
 
   /* share */
   var toast=$("#toast"), tt;
