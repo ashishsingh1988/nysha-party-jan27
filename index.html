@@ -206,7 +206,8 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
   box-shadow:0 18px 40px -18px rgba(59,42,74,.6),0 0 0 1px var(--line);opacity:0;transition:opacity .5s ease .8s,transform .5s ease .8s;max-width:calc(100vw - 24px)}
 .dock.in{opacity:1;transform:translateX(-50%)}
 .dock a,.dock button{border:0;background:transparent;font-weight:800;font-size:14px;padding:10px 12px;border-radius:999px;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;color:var(--ink)}
-.dock .pri{background:var(--accent);color:#fff}
+.dock a.on{background:var(--accent);color:#fff}
+.dock a,.dock button{transition:background .25s,color .25s}
 .dock svg{width:16px;height:16px}
 .dock .eq{display:inline-flex;align-items:flex-end;gap:2px;height:14px}
 .dock .eq i{width:3px;height:5px;border-radius:2px;background:var(--accent);transition:height .3s}
@@ -402,9 +403,9 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
 </main>
 
 <nav class="dock" id="dock" aria-label="Quick actions">
-  <a class="pri" href="#rsvp">RSVP</a>
-  <a href="#plan">Plan</a>
-  <a href="#dress">Dress up</a>
+  <a class="on" href="#rsvp" data-sec="rsvp">RSVP</a>
+  <a href="#plan" data-sec="plan">Plan</a>
+  <a href="#dress" data-sec="dress">Dress up</a>
   <button type="button" id="music" aria-label="Play music" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>Music</button>
   <button type="button" id="share" aria-label="Share">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>Share
@@ -577,6 +578,21 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
   document.addEventListener("pointerdown",function(){ if(musicOn && (needFresh || !ac || ac.state!=="running")) freshMusic(); },{passive:true});
 
   /* share */
+  /* the bottom bar highlights the section you tapped or scrolled to; RSVP when none of them is on screen */
+  var dockLinks=$$(".dock a[data-sec]"), lockUntil=0;
+  function setDock(id){ dockLinks.forEach(function(a){ a.classList.toggle("on", a.getAttribute("data-sec")===id); }); }
+  dockLinks.forEach(function(a){ a.addEventListener("click",function(){ setDock(a.getAttribute("data-sec")); lockUntil=Date.now()+900; }); });
+  if("IntersectionObserver" in window){
+    var seen={};
+    var spy=new IntersectionObserver(function(es){
+      es.forEach(function(e){ seen[e.target.id]=e.isIntersecting; });
+      if(Date.now()<lockUntil) return;
+      var best=null, bestTop=Infinity;
+      Object.keys(seen).forEach(function(id){ if(!seen[id]) return; var t=Math.abs(document.getElementById(id).getBoundingClientRect().top); if(t<bestTop){ bestTop=t; best=id; } });
+      setDock(best||"rsvp");
+    },{rootMargin:"-40% 0px -40% 0px"});
+    ["plan","dress","rsvp"].forEach(function(id){ var el=document.getElementById(id); if(el) spy.observe(el); });
+  }
   var toast=$("#toast"), tt;
   function say(m){toast.textContent=m;toast.classList.add("on");clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove("on");},2200);}
   $("#share").addEventListener("click",function(){
