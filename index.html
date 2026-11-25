@@ -83,7 +83,6 @@ section{position:relative;padding:clamp(60px,9vw,104px) var(--pad)}
 .g-hint i{width:22px;height:22px;border-radius:50%;background:var(--pink);display:inline-block}
 .g-hint b{width:90px;height:6px;border-radius:99px;background:var(--line);overflow:hidden;display:block}
 .g-hint b s{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
-.g-skip{position:absolute;top:max(10px,env(safe-area-inset-top));right:8px;padding:12px 14px;min-height:44px;background:none;border:0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);cursor:pointer;z-index:4}
 .g-done{position:absolute;inset:0;display:grid;place-items:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .6s;z-index:5}
 .gate.done .g-done{opacity:1;pointer-events:auto}
 .gate.done .sky,.gate.done .g-hint,.gate.done .g-top{opacity:0;transition:opacity .4s}
@@ -237,15 +236,13 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
   <i class="cloud c1" aria-hidden="true"></i><i class="cloud c2" aria-hidden="true"></i><i class="cloud c3" aria-hidden="true"></i>
   <div class="g-top"><small>Surprise!</small><p>Pop all the balloons to open it</p></div>
   <div class="sky" id="sky">
-    <button type="button" class="bal" style="--x:12%;--y:22%;--c:var(--pink);--d:0" aria-label="Pop balloon"></button>
-    <button type="button" class="bal" style="--x:60%;--y:16%;--c:var(--blue);--d:1" aria-label="Pop balloon"></button>
-    <button type="button" class="bal" style="--x:36%;--y:40%;--c:var(--yellow);--d:2" aria-label="Pop balloon"></button>
-    <button type="button" class="bal" style="--x:72%;--y:46%;--c:var(--mint);--d:3" aria-label="Pop balloon"></button>
-    <button type="button" class="bal" style="--x:10%;--y:60%;--c:var(--lilac);--d:4" aria-label="Pop balloon"></button>
-    <button type="button" class="bal" style="--x:48%;--y:68%;--c:var(--peach);--d:5" aria-label="Pop balloon"></button>
+    <button type="button" class="bal" style="--x:14%;--y:20%;--c:var(--pink);--d:0" aria-label="Pop balloon"></button>
+    <button type="button" class="bal" style="--x:62%;--y:16%;--c:var(--blue);--d:1" aria-label="Pop balloon"></button>
+    <button type="button" class="bal" style="--x:38%;--y:42%;--c:var(--yellow);--d:2" aria-label="Pop balloon"></button>
+    <button type="button" class="bal" style="--x:12%;--y:62%;--c:var(--lilac);--d:3" aria-label="Pop balloon"></button>
+    <button type="button" class="bal" style="--x:64%;--y:58%;--c:var(--mint);--d:4" aria-label="Pop balloon"></button>
   </div>
   <div class="g-hint" id="hint"><i aria-hidden="true"></i><span>Tap every balloon to pop it</span><b aria-hidden="true"><s id="prog"></s></b></div>
-  <button type="button" class="g-skip" id="skip">Skip</button>
   <div class="g-done">
     <div class="g-card">
       <div class="g-age" aria-hidden="true">5</div>
@@ -269,7 +266,7 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
       <div class="turning">is turning</div>
       <div class="age">5</div>
       <div class="when">Sunday · 10 January · 2027</div>
-      <div class="where">The Ponds Community Hub · from 4:30 pm</div>
+      <div class="where">The Ponds Community Hub · starts at 4:30 pm</div>
       <div class="host">With love from <b>Ashish, Ruchi &amp; Yuvaan Singh</b></div>
     </div>
     <div class="cue">SCROLL</div>
@@ -284,7 +281,7 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
         <div class="card main rv">
           <div class="ic">🎈</div>
           <h3>Sunday, 10 January 2027</h3>
-          <p>From 4:30 pm. Stay for games, cake cutting and dinner!</p>
+          <p>Starts at 4:30 pm. Stay for games, cake cutting and dinner!</p>
         </div>
         <div class="card rv">
           <div class="ic" style="--t:#E2F0FF">📍</div>
@@ -313,7 +310,7 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
       <p class="lead center rv" style="margin-top:14px">We have a few surprises up our sleeve. Here is the rough plan.</p>
       <ol class="plan">
         <li class="rv" style="--c:var(--pink)"><i>🎈</i><div><time>4:30 pm</time><h3>Welcome</h3><p>Come in, grab a balloon and find your friends.</p></div></li>
-        <li class="rv" style="--c:var(--blue)"><i>🎩</i><div><time>5:00 pm</time><h3>Games and magic</h3><p>A surprise guest keeps the kids busy with games, play and a bit of magic.</p></div></li>
+        <li class="rv" style="--c:var(--blue)"><i>🎩</i><div><time>5:00 pm</time><h3>Games and surprises</h3><p>A surprise guest keeps the kids busy with games, play and a few surprises.</p></div></li>
         <li class="rv" style="--c:var(--yellow)"><i>🎂</i><div><time>7:15 pm</time><h3>Cake cutting</h3><p>Everyone together for the loudest "Happy Birthday" of the year.</p></div></li>
         <li class="rv" style="--c:var(--mint)"><i>🍽️</i><div><time>8:00 pm</time><h3>Dinner</h3><p>Dinner for everyone, with cake for dessert.</p></div></li>
       </ol>
@@ -491,7 +488,6 @@ body.intro .hero .in>*:nth-child(2){animation-delay:.15s}body.intro .hero .in>*:
     $("#dock").classList.add("in"); reveal();
   }
   $("#enter").addEventListener("click",enter);
-  $("#skip").addEventListener("click",function(){ done=true; enter(); });
 
   /* reveal on scroll */
   function reveal(){
